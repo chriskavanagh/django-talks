@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 
 # Create your models here.
 class TalkList(models.Model):
-	author = models.Foreign(User, related_name='lists')
+	author = models.ForeignKey(User, related_name='lists')
 	title = models.CharField(max_length=50)
 	text = models.TextField(max_length=1024)
 
