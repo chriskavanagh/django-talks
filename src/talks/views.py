@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 from django.shortcuts import render
-from .forms import TalksForm
+#from .forms import TalksForm
 from .models import TalkList
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
@@ -19,5 +19,8 @@ class TalkDetailView(DetailView):
     
 class TalkCreateView(CreateView):
     model = TalkList
-    form_class = TalksForm
+    fields = ['author', 'title', 'text']
+    template_name = 'talklist_form.html'
+    #form_class = TalksForm
+    success_url = reverse_lazy('talk_list')    # must fix file name
     

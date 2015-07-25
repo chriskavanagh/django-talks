@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.author }} | Lists | {{ block.super }}{% endblock title %}
+
+{% block headline %}
+<h1>{{ object.author }}</h1>
+<h2>Your Lists</h2>
+{% endblock headline %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-6">
+        <p>Talks go here</p>
+       		<p>{{ object.title }}</p>
+       			<p>{{ object.text }}</p>
+    </div>
+
+    <div class="col-sm-6">
+        <p><a href="{% url 'talk_list' %}">Back to lists</a></p>
+    </div>
+</div>
+{% endblock %}

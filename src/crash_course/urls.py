@@ -15,14 +15,21 @@ Including another URLconf
 """
 
 from __future__ import absolute_import
+from django.conf import settings
+from django.conf.urls.static import static
 from django.conf.urls import include, url
 from django.contrib import admin
 from .views import HomePageView, SignUpView, LoginView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^talks/', include(talks.site.urls)),
+    url(r'^talks/', include('talks.urls')),
     url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^accounts/register/$', SignUpView.as_view(), name='signup'),
     url(r'^accounts/login/$', LoginView.as_view(), name='login'),
 ]
+
+
+if settings.DEBUG:
+	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth import User
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
 # Create your models here.
@@ -12,7 +12,7 @@ class TalkList(models.Model):
 		return self.title
 
 	def get_absolute_url(self):
-		return reverse('comment_detail', kwargs={'pk': self.pk})
+		return reverse('talk_detail', kwargs={'pk': self.pk})
 
 
 
