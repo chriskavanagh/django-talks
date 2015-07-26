@@ -12,15 +12,30 @@ class TalkListView(ListView):
     template_name = 'talk_list.html'
     
     
+    
 class TalkDetailView(DetailView):
     model = TalkList
     template_name = 'talk_detail.html'
+    
     
     
 class TalkCreateView(CreateView):
     model = TalkList
     fields = ['author', 'title', 'text']
     template_name = 'talklist_form.html'
-    #form_class = TalksForm
-    success_url = reverse_lazy('talk_list')    # must fix file name
+    success_url = reverse_lazy('talk_list')
+    
+    
+    
+class TalkUpdateView(UpdateView):
+    model = TalkList
+    template_name = 'talklist_form.html'
+    fields = ['author', 'title', 'text']
+    
+    
+    
+class TalkDeleteView(DeleteView):
+    model = TalkList
+    template_name = 'talklist_confirm_delete.html'
+    success_url = reverse_lazy('talk_list')
     

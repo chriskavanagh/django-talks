@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from django.views.generic import TemplateView, CreateView, FormView
+from django.views.generic import TemplateView, CreateView, FormView, RedirectView
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -33,4 +33,14 @@ class LoginView(FormView):
             return super(LoginView, self).form_valid(form)
         else:
             return self.form_invalid(form)
+            
+            
+class LogOutView(RedirectView):
+    url = reverse_lazy('home')
+    
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return super(LogOutView, self).get(request, *args, **kwargs)
+
+
     

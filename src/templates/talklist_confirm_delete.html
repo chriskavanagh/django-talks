@@ -19,8 +19,10 @@
 	{% endif %}
 	
 	<form action='' method="POST">{% csrf_token %}
-			{{ form|crispy }}
-		<input class='btn btn-default' type='submit' value='Submit' />
+		<p>Are you sure you want to delete {{ object.title }}
+		<!--	{{ form|crispy }} -->
+		<input class='btn btn-default' type='submit' value='Yes' />
+		<a href="{% url 'talk_list' %}">No</a>
 	</form>
 
 {% endblock content %}

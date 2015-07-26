@@ -11,6 +11,7 @@
             {% for object in object_list %}
             <li class="list-group-item">
                 <a href="{{ object.get_absolute_url }}">{{ object }}</a>
+                <!-- {% url 'talk_detail' object.pk %} -->                
             </li>
             {% empty %}
             <li class="list-group-item">You have no lists</li>
@@ -18,7 +19,7 @@
         </ul>
     </div>
     <div class="col-sm-6">
-        <p><a href="#" class="btn">Create a new list</a></p>
+        <p><a href="{% url 'create_list' %}" class="btn btn-default navbar-btn">Create a new list</a></p>
     </div>
 </div>
 {% endblock %}
