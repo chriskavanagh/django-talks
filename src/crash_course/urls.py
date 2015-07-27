@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import include, url
 from django.contrib import admin
-from .views import HomePageView, SignUpView, LoginView
+from .views import HomePageView, SignUpView, LoginView, LogOutView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^accounts/register/$', SignUpView.as_view(), name='signup'),
     url(r'^accounts/login/$', LoginView.as_view(), name='login'),
+    url(r'^accounts/logout/$', LogOutView.as_view(), name='logout'),
 ]
 
 

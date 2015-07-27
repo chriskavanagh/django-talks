@@ -5,6 +5,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 # Create your views here.
@@ -37,6 +39,10 @@ class LoginView(FormView):
             
 class LogOutView(RedirectView):
     url = reverse_lazy('home')
+    
+    @method_decorator(login_required)    
+    def dispatch(self, *args, **kwargs):
+        return super(LogOutView, self).dispatch(*args, **kwargs)
     
     def get(self, request, *args, **kwargs):
         logout(request)
