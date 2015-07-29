@@ -5,5 +5,8 @@
 {% block content %}
 
 	<p>Howdy{% if user.is_authenticated %} {{ user.username }}{% endif %}!</p>
+	<div class="col-sm-6">
+		<p><a href="{% url 'talk_list' %}" class="btn btn-default navbar-btn">View Talks</p></a>
+	</div>
 
 {% endblock %}

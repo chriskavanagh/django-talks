@@ -2,7 +2,7 @@
 
 {% block title %}Lists | {{ block.super }}{% endblock title %}
 
-{% block headline %}<h1>Your Lists</h1>{% endblock headline %}
+{% block headline %}<h1>Your Lists {{ user.username }}</h1>{% endblock headline %}
 
 {% block content %}
 <div class="row">
@@ -19,7 +19,7 @@
         </ul>
     </div>
     <div class="col-sm-6">
-        <p><a href="{% url 'create_list' %}" class="btn btn-default navbar-btn">Create a new list</a></p>
+        <p><a href="{% url 'create_list' %}" class="btn btn-default navbar-btn">Create a new talk</a></p>
     </div>
 </div>
 {% endblock %}

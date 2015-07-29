@@ -7,23 +7,28 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 # Create your views here.
-class HomePageView(TemplateView):
+class HomePageView(SuccessMessageMixin, TemplateView):
     template_name = 'home.html'
+    success_message = 'Welcome To Django 1.8 Survival Guide!'
     
     
-class SignUpView(CreateView):
+class SignUpView(SuccessMessageMixin, CreateView):
     form_class = UserCreationForm
     model = User
     template_name = 'accounts/signup.html'
+    success_message = 'Welcome to Django!'
     
     
-class LoginView(FormView):
+class LoginView(SuccessMessageMixin, FormView):
     form_class = AuthenticationForm
     success_url = reverse_lazy('home')
     template_name = 'accounts/login.html'
+    success_message = 'You Are Logged In'
     
     def form_valid(self, form):
         username = form.cleaned_data['username']
@@ -37,8 +42,9 @@ class LoginView(FormView):
             return self.form_invalid(form)
             
             
-class LogOutView(RedirectView):
+class LogOutView(SuccessMessageMixin, RedirectView):
     url = reverse_lazy('home')
+    success_message = 'You Are Logged out, Goodbye'
     
     @method_decorator(login_required)    
     def dispatch(self, *args, **kwargs):

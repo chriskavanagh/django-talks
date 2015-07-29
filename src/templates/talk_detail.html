@@ -15,8 +15,8 @@
     </div>
 
     <div class="col-sm-6">
-    	<p><h3><a href="{% url 'talk_list' %}"><span class="label label-success">Lists</span></a></h3></p>
     	<p><h3><a href="{% url 'talk_edit' object.pk %}"><span class="label label-warning">Edit</span></a></h3></p>
+    	<p><h3><a href="{% url 'talk_list' %}"><span class="label label-success">Lists</span></a></h3></p>    	
     	<p><h3><a href="{% url 'talk_delete' object.pk %}"><span class="label label-danger">Delete</span></a></h3></p>
     </div>
 </div>

@@ -4,6 +4,10 @@ from django.shortcuts import render
 from .models import TalkList
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 # Create your views here.
@@ -19,11 +23,16 @@ class TalkDetailView(DetailView):
     
     
     
-class TalkCreateView(CreateView):
+class TalkCreateView(SuccessMessageMixin, CreateView):
     model = TalkList
     fields = ['author', 'title', 'text']
     template_name = 'talklist_form.html'
     success_url = reverse_lazy('talk_list')
+    success_message = 'A new article was created'
+    
+    @method_decorator(login_required)    
+    def dispatch(self, *args, **kwargs):
+        return super(TalkCreateView, self).dispatch(*args, **kwargs)
     
     
     

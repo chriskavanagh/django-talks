@@ -3,6 +3,12 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
 # Create your models here.
+class TestTalkManager(models.Manager):
+	def get_queryset(self):
+		return super(TestTalkManager, self).get_queryset().filter(title='Test')
+
+
+
 class TalkList(models.Model):
 	author = models.ForeignKey(User, related_name='lists')
 	title = models.CharField(max_length=50)
@@ -13,6 +19,9 @@ class TalkList(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('talk_detail', kwargs={'pk': self.pk})
+
+	objects = models.Manager()
+	test_objects = TestTalkManager()
 
 
 
