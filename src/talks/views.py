@@ -16,11 +16,16 @@ class TalkListView(ListView):
     template_name = 'talk_list.html'
     
     
+class TestListView(SuccessMessageMixin, ListView):
+    model = TalkList
+    queryset = TalkList.test_objects.all()
+    template_name = 'test_detail.html'
+    success_message = 'These are articles named Test'    
+    
     
 class TalkDetailView(DetailView):
     model = TalkList
-    template_name = 'talk_detail.html'
-    
+    template_name = 'talk_detail.html'    
     
     
 class TalkCreateView(SuccessMessageMixin, CreateView):
@@ -32,15 +37,13 @@ class TalkCreateView(SuccessMessageMixin, CreateView):
     
     @method_decorator(login_required)    
     def dispatch(self, *args, **kwargs):
-        return super(TalkCreateView, self).dispatch(*args, **kwargs)
-    
+        return super(TalkCreateView, self).dispatch(*args, **kwargs)    
     
     
 class TalkUpdateView(UpdateView):
     model = TalkList
     template_name = 'talklist_form.html'
-    fields = ['author', 'title', 'text']
-    
+    fields = ['author', 'title', 'text']    
     
     
 class TalkDeleteView(DeleteView):

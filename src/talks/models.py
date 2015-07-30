@@ -8,7 +8,6 @@ class TestTalkManager(models.Manager):
 		return super(TestTalkManager, self).get_queryset().filter(title='Test')
 
 
-
 class TalkList(models.Model):
 	author = models.ForeignKey(User, related_name='lists')
 	title = models.CharField(max_length=50)

@@ -4,9 +4,14 @@
 
 {% block content %}
 
-	<p>Howdy{% if user.is_authenticated %} {{ user.username }}{% endif %}!</p>
-	<div class="col-sm-6">
-		<p><a href="{% url 'talk_list' %}" class="btn btn-default navbar-btn">View Talks</p></a>
+	<h2><p>Howdy{% if user.is_authenticated %} {{ user.username }}{% endif %}!</p></h2>
+	<h3><p>This site allows you to create your own Blogs, article by article. Just click on 'Create Talks' and get to work!</p></h3>
+	<h3><p>To view all your articles, click on 'View Talks'.</p></h3></br></br>
+	<div class="col-sm-3">
+		<p><ul class="nav nav-pills nav-stacked">
+			<li role="presentation" class="active"><a href="{% url 'talk_list' %}" class="nav nav-pills">View Talks &raquo;</a></li>
+			<li role="presentation" class="active"><a href="{% url 'create_list' %}" class="nav nav-pills">Create Talks &raquo;</a></li>
+		</ul></p>
 	</div>
 
-{% endblock %}
+{% endblock content %}
