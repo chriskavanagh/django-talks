@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Lists | {{ block.super }}{% endblock title %}
+
+{% block headline %}<h1>Your Lists {{ user.username }}</h1>{% endblock headline %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-6">
+        <ul class="list-group">
+            {% for object in object_list %}
+            <li class="list-group-item">
+                <a href="{{ object.get_absolute_url }}">{{ object }}</a>
+                <!-- {% url 'talk_detail' object.pk %} -->                
+            </li>
+            {% empty %}
+            <li class="list-group-item">You have no lists</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="col-sm-6">
+        <p><a href="{% url 'create_list' %}" class="btn btn-default navbar-btn">Create a new talk</a></p>
+    </div>
+</div>
+{% endblock %}

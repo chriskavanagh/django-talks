@@ -12,6 +12,7 @@ class TalkList(models.Model):
 	author = models.ForeignKey(User, related_name='lists')
 	title = models.CharField(max_length=50)
 	text = models.TextField(max_length=1024)
+	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 
 	def __unicode__(self):
 		return self.title

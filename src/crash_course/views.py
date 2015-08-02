@@ -56,3 +56,10 @@ class LogOutView(SuccessMessageMixin, RedirectView):
 
 
     
+# django braces FormMessageMixin   
+# class LoginView(FormMessagesMixin, FormView):
+    # template_name = 'accounts/login.jinja'
+    # form_class = AuthenticationForm
+    # success_url = reverse_lazy('dashboard')
+    # form_valid_message = 'Thank you for registering'
+    # form_invalid_message = 'Something went wrong. Please Try Again'
