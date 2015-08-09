@@ -22,6 +22,7 @@ class SignUpView(SuccessMessageMixin, CreateView):
     model = User
     template_name = 'accounts/signup.html'
     success_message = 'Welcome to Django!'
+    success_url = reverse_lazy('home')
     
     
 class LoginView(SuccessMessageMixin, FormView):

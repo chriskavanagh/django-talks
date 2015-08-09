@@ -39,6 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'talks',
     'crispy_forms',
+    'communication',
+    'django_twilio',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -57,7 +59,7 @@ ROOT_URLCONF = 'crash_course.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,3 +120,9 @@ LOGIN_REDIRECT_URL = '/'
 
 #django-crispy-forms:
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+
+# Twilio (communication app)
+TWILIO_ACCOUNT_SID = 'AC14ee2622fed51f98e149a3921f4ed1b1'
+TWILIO_AUTH_TOKEN = '7777b2727a8e492022aab4f1f3f1009c'
+#TWILIO_PHONE_NUMBER = '+15406131918'

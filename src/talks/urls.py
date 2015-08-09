@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 from django.conf.urls import include, url
-from .views import TalkListView, TalkDetailView, TalkCreateView, TalkDeleteView, TalkUpdateView, TestListView, TalkListUserView, TalkArchiveView
+from .views import TalkListView, TalkDetailView, TalkCreateView, TalkDeleteView, TalkUpdateView,\
+                                                           TestListView, TalkListUserView, TalkArchiveView
 
 urlpatterns = [
     

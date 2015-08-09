@@ -28,6 +28,9 @@ urlpatterns = [
     url(r'^accounts/register/$', SignUpView.as_view(), name='signup'),
     url(r'^accounts/login/$', LoginView.as_view(), name='login'),
     url(r'^accounts/logout/$', LogOutView.as_view(), name='logout'),
+    #url(r'^sms/$', 'djtwilio.views.sms'),
+    #url(r'^ring/$', 'djtwilio.views.ring'),
+    #url(r'^hello_world/$', 'djtwilio.views.say', {'text': 'Hello World!'}),
 ]
 
 
