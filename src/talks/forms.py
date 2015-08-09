@@ -6,6 +6,7 @@ from .models import TalkList, UserProfile
 class TalksForm(forms.ModelForm):
     class Meta:
         model = TalkList
+        fields = ('author', 'title', 'text')
         
         
         

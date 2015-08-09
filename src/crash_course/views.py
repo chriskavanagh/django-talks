@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from talks.models import UserProfile
 
 
 # Create your views here.
@@ -69,6 +70,9 @@ def user_profile(request):
         user = request.user
         profile = user.profile
         form = UserProfileForm(instance=profile)
+        
+    context = {'form': form}
+    return render(request, 'profile.html', context)
 
 
     

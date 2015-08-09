@@ -31,7 +31,7 @@ class TalkList(models.Model):
     
     
 class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, related_name='profile')
     gender = models.CharField(max_length=4)
     location = models.CharField(max_length=30)
     
@@ -43,5 +43,5 @@ class UserProfile(models.Model):
 @receiver(post_save, sender=User)
 def create_profile(sender, created, instance, **kwargs):
     if created:
-        user_profile = UserProfile.objects.get_or_create(user=instance)[0]
-        user_profile.save()
+        profile = UserProfile.objects.get_or_create(user=instance)[0]
+        profile.save()
