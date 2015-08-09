@@ -2,9 +2,10 @@ from __future__ import absolute_import
 from django.views.generic import TemplateView, CreateView, FormView, RedirectView
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from talks.forms import UserProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
@@ -54,6 +55,20 @@ class LogOutView(SuccessMessageMixin, RedirectView):
     def get(self, request, *args, **kwargs):
         logout(request)
         return super(LogOutView, self).get(request, *args, **kwargs)
+        
+        
+        
+@login_required
+def user_profile(request):
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('home'))
+    else:
+        user = request.user
+        profile = user.profile
+        form = UserProfileForm(instance=profile)
 
 
     
