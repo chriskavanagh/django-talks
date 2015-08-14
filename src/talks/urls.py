@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/update/$', TalkUpdateView.as_view(), name='talk_edit'),
     url(r'^(?P<pk>\d+)/delete/$', TalkDeleteView.as_view(), name='talk_delete'),
     url(r'^archive/$', TalkArchiveView.as_view(), name='talk_archive'),
+    
 ]

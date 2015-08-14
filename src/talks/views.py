@@ -72,6 +72,7 @@ class TalkDeleteView(DeleteView):
     
     
 class TalkArchiveView(ArchiveIndexView):
+'''view that shows archive by date'''
     model = TalkList
     template_name = 'talklist_archive.html'
     date_field = 'timestamp'

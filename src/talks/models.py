@@ -31,7 +31,7 @@ class TalkList(models.Model):
     
     
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, related_name='profile')
+    user = models.OneToOneField(User, related_name='profile')    # user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='profile')
     gender = models.CharField(max_length=4)
     location = models.CharField(max_length=30)
     
@@ -40,8 +40,17 @@ class UserProfile(models.Model):
         
         
         
+        
+## -------------------Signals--------------------##        
+        
+# Signal that creates a profile for each user.
 @receiver(post_save, sender=User)
-def create_profile(sender, created, instance, **kwargs):
-    if created:
+def create_profile(sender, created, instance, **kwargs):    
+    if created:                                             
         profile = UserProfile.objects.get_or_create(user=instance)[0]
         profile.save()
+        
+        
+# sender: the User model class
+# created: a boolean indicating if a new User has been created
+# instance: the User instance being saved

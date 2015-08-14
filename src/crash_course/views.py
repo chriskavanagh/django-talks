@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 from django.views.generic import TemplateView, CreateView, FormView, RedirectView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from talks.forms import UserProfileForm
 from django.contrib.auth.models import User
@@ -45,16 +45,15 @@ class LoginView(SuccessMessageMixin, FormView):
             return self.form_invalid(form)
             
             
-class LogOutView(SuccessMessageMixin, RedirectView):
-    url = reverse_lazy('home')
-    success_message = 'You Are Logged out, Goodbye'
+class LogOutView(RedirectView):
+    url = reverse_lazy('home')    
     
     @method_decorator(login_required)    
     def dispatch(self, *args, **kwargs):
         return super(LogOutView, self).dispatch(*args, **kwargs)
     
     def get(self, request, *args, **kwargs):
-        logout(request)
+        logout(request)                         # auth_logout(request)
         return super(LogOutView, self).get(request, *args, **kwargs)
         
         
@@ -73,6 +72,11 @@ def user_profile(request):
         
     context = {'form': form}
     return render(request, 'profile.html', context)
+    
+    
+    
+# IntegrityError at /profile
+# talks_userprofile.user_id may not be NULL
 
 
     

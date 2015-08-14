@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'talks',
     'crispy_forms',
     'communication',
+    'comments',
     'django_twilio',
 )
 
