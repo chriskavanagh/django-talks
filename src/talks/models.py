@@ -30,6 +30,20 @@ class TalkList(models.Model):
     
     
     
+class Comment(models.Model):
+	talk = models.ForeignKey(TalkList, related_name='comments')
+	title = models.CharField(max_length=50)
+	text = models.TextField(max_length=1024)
+	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+
+	def __unicode__(self):
+		return self.title
+
+	def get_absolute_url(self):
+		return reverse('comment_detail', kwargs={'pk': self.pk})
+    
+    
+    
 class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name='profile')    # user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='profile')
     gender = models.CharField(max_length=4)

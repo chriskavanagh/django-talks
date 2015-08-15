@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from django.shortcuts import render
-#from .forms import TalksForm
-from .models import TalkList
+from .forms import CommentForm
+from .models import TalkList, Comment
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic.dates import ArchiveIndexView
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -72,9 +73,22 @@ class TalkDeleteView(DeleteView):
     
     
 class TalkArchiveView(ArchiveIndexView):
-'''view that shows archive by date'''
+    '''view that shows archive by date'''
     model = TalkList
     template_name = 'talklist_archive.html'
     date_field = 'timestamp'
+    
+    
+class CommentCreateView(CreateView):
+    form_class = CommentForm
+    model = Comment
+    template_name = 'comment.html'
+    success_url = reverse_lazy('talk_list')
+    
+    def form_valid(self, form):
+        self.instance = form.save(commit=False)
+        self.instance.talk = get_object_or_404(TalkList, pk=self.kwargs['pk'])
+        self.instance.save()
+        return super(CommentCreateView, self).form_valid(form)
     
     

@@ -40,8 +40,8 @@ INSTALLED_APPS = (
     'talks',
     'crispy_forms',
     'communication',
-    'comments',
-    'django_twilio',
+    #'comments',
+    #'django_twilio',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}{{ headline }} | Lists | {{ block.super }}{% endblock title %}
+
+{% block headline %}
+<h1>{{ headline }}</h1>
+<h2>Add Comment</h2>
+{% endblock headline %}
+
+{% block content %}
+
+		<h3>Create</h3>
+	
+	<form action='' method="POST">{% csrf_token %}
+			{{ form|crispy }}
+		<input class='btn btn-default' type='submit' value='Submit' />
+	</form>
+
+{% endblock content %}

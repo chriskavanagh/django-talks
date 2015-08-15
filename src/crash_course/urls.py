@@ -25,7 +25,6 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^talks/', include('talks.urls')),
-    url(r'^comments/', include('comments.urls')),
     url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^profile$', 'crash_course.views.user_profile', name='profile'),
     url(r'^accounts/register/$', SignUpView.as_view(), name='signup'),
