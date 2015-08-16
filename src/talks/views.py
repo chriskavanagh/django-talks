@@ -87,8 +87,8 @@ class CommentCreateView(CreateView):
     
     def form_valid(self, form):
         self.instance = form.save(commit=False)
-        self.instance.talk = get_object_or_404(TalkList, pk=self.kwargs['pk'])
-        self.instance.save()
-        return super(CommentCreateView, self).form_valid(form)
+        self.instance.talk = get_object_or_404(TalkList, pk=self.kwargs['pk'])    # or pk=self.kwargs.get('pk', None)
+        self.instance.save()                                                      # redundant to save because (see below)...http://stackoverflow.com/questions/10382838/how-to-set-foreignkey-in-createview
+        return super(CommentCreateView, self).form_valid(form)                    # this saves the form (again) along with instance.save()
     
     
