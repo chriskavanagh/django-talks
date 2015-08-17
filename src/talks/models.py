@@ -35,6 +35,10 @@ class Comment(models.Model):
 	title = models.CharField(max_length=50)
 	text = models.TextField(max_length=1024)
 	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+    
+    class Meta:
+        ordering = ['-order_date']
+        
 
 	def __unicode__(self):
 		return self.title
