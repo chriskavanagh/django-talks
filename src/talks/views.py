@@ -42,7 +42,16 @@ class TestListView(ListView):
 class TalkDetailView(DetailView):
     '''view that shows individual article or list'''
     model = TalkList
-    template_name = 'talk_detail.html'    
+    template_name = 'talk_detail.html'
+    
+    # def get_context_data(self, **kwargs):
+        # context = super(TalkDetailView, self).get_context_data(**kwargs)
+        # c = self.object.comments.all()
+        # context['comments'] = c
+        # return context
+        
+        # used object.comments.all in template instead of overriding get_context_data
+    
     
     
 class TalkCreateView(SuccessMessageMixin, CreateView):

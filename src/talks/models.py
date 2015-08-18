@@ -34,17 +34,10 @@ class Comment(models.Model):
 	talk = models.ForeignKey(TalkList, related_name='comments')
 	title = models.CharField(max_length=50)
 	text = models.TextField(max_length=1024)
-	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
-    
-    class Meta:
-        ordering = ['-order_date']
+	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)    
         
-
 	def __unicode__(self):
 		return self.title
-
-	# def get_absolute_url(self):
-		# return reverse('comment_detail', kwargs={'pk': self.pk})
     
     
     
