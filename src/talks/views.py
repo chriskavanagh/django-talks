@@ -46,7 +46,7 @@ class TalkDetailView(DetailView):
     
     # def get_context_data(self, **kwargs):
         # context = super(TalkDetailView, self).get_context_data(**kwargs)
-        # c = self.object.comments.all()
+        # c = self.object.comments.all()    # use related_name instead of set_all, object is the talk instance
         # context['comments'] = c
         # return context
         
@@ -94,10 +94,18 @@ class CommentCreateView(CreateView):
     template_name = 'comment.html'
     success_url = reverse_lazy('talk_list')
     
+    def get_context_data(self, **kwargs):
+        context = super(CommentCreateView, self).get_context_data(**kwargs)
+        t = get_object_or_404(TalkList, pk=self.kwargs['pk'])
+        context['talk'] = t
+        return context
+    
     def form_valid(self, form):
         self.instance = form.save(commit=False)
         self.instance.talk = get_object_or_404(TalkList, pk=self.kwargs['pk'])    # or pk=self.kwargs.get('pk', None)
         self.instance.save()                                                      # redundant to save because (see below)...http://stackoverflow.com/questions/10382838/how-to-set-foreignkey-in-createview
         return super(CommentCreateView, self).form_valid(form)                    # this saves the form (again) along with instance.save()
     
+        
+        
     

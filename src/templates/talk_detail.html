@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ object.author }} | Lists | {{ block.super }}{% endblock title %}
+{% block title %}{{ object.author }} | Lists{% endblock title %}
 
 {% block headline %}
 <h1>{{ object.author }}</h1>
@@ -11,19 +11,27 @@
 <div class="row">
     <div class="col-sm-6">
        		<p><h3>{{ object.title }}</h3></p>
-       			<p>{{ object.text }}</p>
+       			<p>{{ object.text|linebreaks }}</p>
     </div>
 </div>
-	
+
+
+<!-- -------Comments-------- -->
+
 <div class="row">
 	<div class="col-sm-3">
 		<h4>Comments</h4>
+		<a href="{% url 'comment' object.pk %}">Add Comment</a>
 			{% for c in object.comments.all %}
+			
 				<p>{{ c.title }}: {{ c.text }}</p>
 				
 			{% endfor %}
 	</div>
 </div>
-    
+
+<!-- ------End Comments------- -->
+				
+		
 
 {% endblock %}
