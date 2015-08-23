@@ -10,22 +10,26 @@
 {% block content %}
 <div class="row">
     <div class="col-sm-6">
-       		<p><h3>{{ object.title }}</h3></p>
+       		<p><h3>{{ object.title }}:</h3></p>
+			<p><i>Article Published: {{ object.timestamp }}</i>...
        			<p>{{ object.text|linebreaks }}</p>
     </div>
 </div>
 
 
-<!-- -------Comments-------- -->
-
+<!-- -------Comments-------- --->
+</br>
+</br>
+</br>
 <div class="row">
-	<div class="col-sm-3">
-		<h4>Comments</h4>
+	<div class="col-sm-6">
+		<h4>All Comments. . </h4></br>
 		<a href="{% url 'comment' object.pk %}">Add Comment</a>
 			{% for c in object.comments.all %}
-			
-				<p>{{ c.title }}: {{ c.text }}</p>
-				
+				<div class="comment">
+					<div class="time">{{ c.timestamp }}</div>
+					<div class="body"><strong>{{ c.title }}</strong>: {{ c.text|linebreaks }}</div>
+				</div>				
 			{% endfor %}
 	</div>
 </div>

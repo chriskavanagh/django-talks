@@ -12,6 +12,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
 
 
+
 # Create your views here.
 class TalkListView(ListView):
     '''view that displays all lists'''
@@ -98,7 +99,7 @@ class CommentCreateView(CreateView):
         context = super(CommentCreateView, self).get_context_data(**kwargs)
         t = get_object_or_404(TalkList, pk=self.kwargs['pk'])
         context['talk'] = t
-        return context
+        return context    
     
     def form_valid(self, form):
         self.instance = form.save(commit=False)

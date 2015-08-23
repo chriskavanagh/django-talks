@@ -40,12 +40,7 @@ class Comment(models.Model):
 		return self.title
 
 	def get_absolute_url(self):
-		return reverse('comment', kwargs={'pk': self.pk})
-
-
-# <!-- {% url 'comment' object.pk %} -->
-        
-        
+		return reverse('comment', kwargs={'pk': self.pk})        
     
     
     
