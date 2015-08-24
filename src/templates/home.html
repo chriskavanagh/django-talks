@@ -2,16 +2,25 @@
 
 {% block headline %}<h1>Welcome to the PyCon Survival Guide!</h1>{% endblock headline %}
 
+
+<style>
+	
+</style>
+
+
 {% block content %}
 
-	<h2><p>Howdy{% if user.is_authenticated %} {{ user.username }}{% endif %}!</p></h2>
-	<h3><p>This site allows you to create your own Blogs, article by article. Just click on 'Create Talks' and get to work!</p></h3>
-	<h3><p>To view all your articles, click on 'View Talks'.</p></h3></br></br>
+	<h2><p>Howdy{% if user.is_authenticated %} {{ user.username }}, from {{ user.profile.location }}{% endif %}!</p></h2>
+	<h3><p>This site allows you to create your own Blogs, article by article. Just click on 'Create Talks' and get to work!</i></p></h3></br>
+	<h4><p><i>To view all your articles, click on 'View Talks'.</i></p></h4></br></br>
+	
+	
 	<div class="col-sm-3">
 		<p><ul class="nav nav-pills nav-stacked">
 			<li role="presentation" class="active"><a href="{% url 'talk_list' %}" class="nav nav-pills">View Talks &raquo;</a></li>
 			<li role="presentation" class="active"><a href="{% url 'create_list' %}" class="nav nav-pills">Create Talks &raquo;</a></li>
 		</ul></p>
 	</div>
+	
 
 {% endblock content %}

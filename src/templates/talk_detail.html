@@ -10,9 +10,9 @@
 {% block content %}
 <div class="row">
     <div class="col-sm-6">
-       		<p><h3>{{ object.title }}:</h3></p>
+       		<p><h3><u>{{ object.title }}</u>:</h3></p>
 			<p><i>Article Published: {{ object.timestamp }}</i>...
-       			<p>{{ object.text|linebreaks }}</p>
+       			<p class="lead">{{ object.text|linebreaks }}</p>
     </div>
 </div>
 

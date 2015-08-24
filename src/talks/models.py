@@ -37,10 +37,7 @@ class Comment(models.Model):
 	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
         
 	def __unicode__(self):
-		return self.title
-
-	def get_absolute_url(self):
-		return reverse('comment', kwargs={'pk': self.pk})        
+		return self.title        
     
     
     
@@ -52,7 +49,7 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return self.user.username
         
-        
+    # access Profile attributes in Templates like this: {{ user.profile.location }}
         
         
 ## -------------------Signals--------------------##        
