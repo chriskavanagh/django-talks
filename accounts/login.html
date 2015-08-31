@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Login | {{ block.super }}{% endblock %}
+
+{% block headline %}<h1>Login for the PyCon Survival Guide</h1>{% endblock %}
+
+{% block content %}
+	<div class='row'>
+		<div class='col-sm-6 col-sm-offset-3'>
+
+		    <form action='' method="POST">
+		        {% csrf_token %}
+		        {{ form|crispy }}
+		        <input class='btn btn-default' type='submit' value='Submit' />
+		    </form>
+			
+	<p>Forgot Your Password? <a href="{% url 'password_reset' %}">Reset Password</a></p>
+
+    	</div>
+    </div>
+{% endblock %}

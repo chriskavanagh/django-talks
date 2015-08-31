@@ -11,6 +11,8 @@ from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from talks.models import UserProfile
+from talks.forms import ChangePasswordForm
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -22,7 +24,7 @@ class HomePageView(SuccessMessageMixin, TemplateView):
 class SignUpView(SuccessMessageMixin, CreateView):
     form_class = UserCreationForm
     model = User
-    template_name = 'accounts/signup.html'
+    template_name = 'myaccounts/signup.html'
     success_message = 'Welcome to Django!'
     success_url = reverse_lazy('home')
     
@@ -30,7 +32,7 @@ class SignUpView(SuccessMessageMixin, CreateView):
 class LoginView(SuccessMessageMixin, FormView):
     form_class = AuthenticationForm
     success_url = reverse_lazy('home')
-    template_name = 'accounts/login.html'
+    template_name = 'myaccounts/login.html'
     success_message = 'You Are Logged In'
     
     def form_valid(self, form):
@@ -72,3 +74,54 @@ def user_profile(request):
         
     context = {'form': form}
     return render(request, 'profile.html', context)
+    
+    
+class ChangePassword(FormView):
+    form_class = ChangePasswordForm
+    success_url = reverse_lazy('home')
+    template_name = 'passwordchange.html'
+    
+    def form_valid(self, form):
+        #self.instance = form.save(commit=False)
+        #user = get_object_or_404(User, username=self.request.user)        
+        user = self.request.user
+        password = form.cleaned_data['password']
+        user.set_password(password)
+        user.save()
+        #user.password = u
+        #self.instance.save()
+        return super(ChangePassword, self).form_valid(form)
+    
+    # try u = User.objects.get(username='john')
+
+    # def get_form_kwargs(self):
+        # kwargs = super(ChangePassword, self).get_form_kwargs()
+        # kwargs['user'] = self.request.user
+        # return kwargs
+    
+    # def form_valid(self, form):
+        # self.instance = form.save(commit=False)
+        # #user = get_object_or_404(User, username=self.request.user)        
+        # user = self.request.user
+        # password = form.cleaned_data['password']        
+        # u = user.set_password(password)
+        # user.password = u
+        # self.instance.save()
+        # return super(ChangePassword, self).form_valid(form)
+        
+    
+    
+    
+    
+    
+    
+    
+# class PasswordChangeView(FormView):
+    # form_class = PasswordChangeForm
+    # success_url = reverse_lazy('password_change_done')
+    # template_name = 'registration/password_change_form.html'
+    
+    # def form_valid(self, form):
+        # form.save()
+        # return super(LoginView, self).form_valid(form)
+        

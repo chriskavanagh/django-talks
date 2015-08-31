@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from django.conf.urls import include, url
 from .views import TalkListView, TalkDetailView, TalkCreateView, TalkDeleteView, TalkUpdateView,\
-                                                           TestListView, TalkListUserView, TalkArchiveView, CommentCreateView
+                         TestListView, TalkListUserView, TalkArchiveView, CommentCreateView, CommentDetailView
 
 urlpatterns = [
     
@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/update/$', TalkUpdateView.as_view(), name='talk_edit'),
     url(r'^(?P<pk>\d+)/delete/$', TalkDeleteView.as_view(), name='talk_delete'),
     url(r'^archive/$', TalkArchiveView.as_view(), name='talk_archive'),
-    url(r'^add_comment/(?P<pk>\d+)/$', CommentCreateView.as_view(), name='comment'),
+    url(r'^add-comment/(?P<pk>\d+)/$', CommentCreateView.as_view(), name='comment'),
+    url(r'^view-comment/(?P<pk>\d+)/$', CommentDetailView.as_view(), name='view_comment'),
     
 ]

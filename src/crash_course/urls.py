@@ -19,17 +19,21 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import include, url
 from django.contrib import admin
-from .views import HomePageView, SignUpView, LoginView, LogOutView, user_profile
+from .views import HomePageView, SignUpView, LoginView, LogOutView, user_profile, ChangePassword
 
 urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^talks/', include('talks.urls')),
     url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^profile/$', 'crash_course.views.user_profile', name='profile'),
-    url(r'^accounts/register/$', SignUpView.as_view(), name='signup'),
-    url(r'^accounts/login/$', LoginView.as_view(), name='login'),
-    url(r'^accounts/logout/$', LogOutView.as_view(), name='logout'),
+    url(r'^myaccounts/register/$', SignUpView.as_view(), name='signup'),
+    url(r'^myaccounts/login/$', LoginView.as_view(), name='login'),
+    url(r'^myaccounts/logout/$', LogOutView.as_view(), name='logout'),
+    url(r'^password$', ChangePassword.as_view(), name='passwordchange'),
+    #url(r'^accounts/password-reset/$', 'django.contrib.auth.views.password_reset', name='password_reset'),
+    #url(r'^password-change/$', 'django.contrib.auth.views.password_change', name='password_change'),
     
 ]
 

@@ -37,7 +37,13 @@ class Comment(models.Model):
 	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
         
 	def __unicode__(self):
-		return self.title        
+		return self.title
+
+	def get_absolute_url(self):
+		return reverse('view_comment', kwargs={'pk': self.pk})
+
+	# def get_absolute_url(self):
+	# 	return reverse('view_comment', kwargs={'pk': self.talk.pk, 'pk': self.pk})        
     
     
     

@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 from django import forms
 from .models import TalkList, UserProfile, Comment
+from django.contrib.auth.models import User
 
 
 class TalksForm(forms.ModelForm):
@@ -19,4 +20,10 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('gender', 'location')
+        
+        
+class ChangePasswordForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('password',)
         

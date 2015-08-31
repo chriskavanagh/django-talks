@@ -36,7 +36,7 @@ class TalkListUserView(ListView):
 class TestListView(ListView):
     '''view that shows lists w/title=test. TestTalkManager'''
     model = TalkList
-    queryset = TalkList.test_objects.all()
+    queryset = TalkList.test_objects.all()    # .test_objects from custom manager in models.
     template_name = 'test_detail.html'    
     
     
@@ -52,6 +52,12 @@ class TalkDetailView(DetailView):
         # return context
         
         # used object.comments.all in template instead of overriding get_context_data
+        
+        
+class CommentDetailView(DetailView):
+    '''view that shows individual article or list'''
+    model = Comment
+    template_name = 'comment_detail.html'
     
     
     
