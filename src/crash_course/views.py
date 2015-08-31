@@ -91,37 +91,4 @@ class ChangePassword(FormView):
         #user.password = u
         #self.instance.save()
         return super(ChangePassword, self).form_valid(form)
-    
-    # try u = User.objects.get(username='john')
-
-    # def get_form_kwargs(self):
-        # kwargs = super(ChangePassword, self).get_form_kwargs()
-        # kwargs['user'] = self.request.user
-        # return kwargs
-    
-    # def form_valid(self, form):
-        # self.instance = form.save(commit=False)
-        # #user = get_object_or_404(User, username=self.request.user)        
-        # user = self.request.user
-        # password = form.cleaned_data['password']        
-        # u = user.set_password(password)
-        # user.password = u
-        # self.instance.save()
-        # return super(ChangePassword, self).form_valid(form)
-        
-    
-    
-    
-    
-    
-    
-    
-# class PasswordChangeView(FormView):
-    # form_class = PasswordChangeForm
-    # success_url = reverse_lazy('password_change_done')
-    # template_name = 'registration/password_change_form.html'
-    
-    # def form_valid(self, form):
-        # form.save()
-        # return super(LoginView, self).form_valid(form)
         
