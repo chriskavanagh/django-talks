@@ -24,7 +24,7 @@
 <div class="row">
 	<div class="col-sm-6">
 		<h4><i>All Comments. . .</i></h4>
-		<p><a href="{% url 'comment' object.pk %}" class="btn btn-default navbar-btn">Add Comment</a></p></br>
+		<p><a href="{% url 'comment' object.pk %}" class="btn btn-default navbar-btn">Leave Comment</a></p></br>
 			{% for c in object.comments.all %}
 				<div class="comment">					
 					<div class="body"><strong><a href="{{ c.get_absolute_url }}">{{ c.title }}</strong>:</a></div>

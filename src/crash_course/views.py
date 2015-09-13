@@ -60,7 +60,7 @@ class LogOutView(RedirectView):
         
         
         
-@login_required
+@login_required()
 def user_profile(request):
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=request.user.profile)
@@ -81,14 +81,16 @@ class ChangePassword(FormView):
     success_url = reverse_lazy('home')
     template_name = 'passwordchange.html'
     
-    def form_valid(self, form):
-        #self.instance = form.save(commit=False)
-        #user = get_object_or_404(User, username=self.request.user)        
+    @method_decorator(login_required)    # (login_url='/myaccounts/login/')
+    def dispatch(self, *args, **kwargs):
+        return super(ChangePassword, self).dispatch(*args, **kwargs)
+    
+    def form_valid(self, form):        
         user = self.request.user
         password = form.cleaned_data['password']
         user.set_password(password)
         user.save()
-        #user.password = u
-        #self.instance.save()
         return super(ChangePassword, self).form_valid(form)
+        
+    
         

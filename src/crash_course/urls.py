@@ -31,9 +31,9 @@ urlpatterns = [
     url(r'^myaccounts/register/$', SignUpView.as_view(), name='signup'),
     url(r'^myaccounts/login/$', LoginView.as_view(), name='login'),
     url(r'^myaccounts/logout/$', LogOutView.as_view(), name='logout'),
-    url(r'^password$', ChangePassword.as_view(), name='passwordchange'),
+    #url(r'^password-change/$', ChangePassword.as_view(), name='password_change'),
     #url(r'^accounts/password-reset/$', 'django.contrib.auth.views.password_reset', name='password_reset'),
-    #url(r'^password-change/$', 'django.contrib.auth.views.password_change', name='password_change'),
+    url(r'^password-change/$', 'django.contrib.auth.views.password_change', {'template_name': 'myaccounts/password_change.html'}, name='password_change'),
     
 ]
 
