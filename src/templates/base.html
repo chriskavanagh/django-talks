@@ -53,6 +53,7 @@
         {% else %}
                 <a href="{% url 'logout' %}" class="btn btn-default navbar-btn">Logout</a>
                 <a href="{% url 'password_change' %}" class="btn btn-default navbar-btn">Change Password</a>
+				<a href="{% url 'password_reset_recover' %}" class="btn btn-default navbar-btn">Reset Password</a>
         {% endif %}
 
         </div><!--/.navbar-collapse -->
@@ -62,8 +63,8 @@
     <div class="container">
 
       <div class="blog-header">
-        <h1 class="blog-title">The Django Blog</h1>
-        <p class="lead blog-description">The un-official Django Survival Guide.</p>
+        {% block h1 %}<h1 class="blog-title">The Django Blog</h1>
+        <p class="lead blog-description">The un-official Django Survival Guide.</p>{% endblock h1 %}
       </div>
 
       <div class="row">

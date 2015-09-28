@@ -24,10 +24,12 @@ from .views import HomePageView, SignUpView, LoginView, LogOutView, user_profile
 urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^password_reset/', include('password_reset.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^talks/', include('talks.urls')),
     url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^profile/$', 'crash_course.views.user_profile', name='profile'),
+    url(r'^contact/$', 'talks.views.contact', name='contact'),
     url(r'^myaccounts/register/$', SignUpView.as_view(), name='signup'),
     url(r'^myaccounts/login/$', LoginView.as_view(), name='login'),
     url(r'^myaccounts/logout/$', LogOutView.as_view(), name='logout'),

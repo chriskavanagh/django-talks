@@ -28,6 +28,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ckava3@gmail.com'
+EMAIL_HOST_PASSWORD = 'djangorocks4137'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True    
+
 
 # Application definition
 
@@ -41,6 +47,7 @@ INSTALLED_APPS = (
     'talks',
     'crispy_forms',
     'communication',
+    'password_reset',
     #'comments',
     #'django_twilio',
 )

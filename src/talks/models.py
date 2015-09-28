@@ -58,9 +58,9 @@ class UserProfile(models.Model):
     # access Profile attributes in Templates like this: {{ user.profile.location }}
         
         
-## -------------------Signals--------------------##        
+## -------------------Signals------------------- ##        
         
-# Signal that creates a profile for each user.
+# Signal that creates a profile for each user, when a new User is created.
 @receiver(post_save, sender=User)
 def create_profile(sender, created, instance, **kwargs):    
     if created:                                             

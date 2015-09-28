@@ -1,8 +1,9 @@
 from __future__ import absolute_import
+from django.conf import settings
 from django.shortcuts import render
 from .forms import CommentForm
 from .models import TalkList, Comment
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic.dates import ArchiveIndexView
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from django.contrib.auth.decorators import login_required
@@ -10,7 +11,9 @@ from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
-
+from .forms import ContactForm
+from django.core.mail import send_mail
+from django.shortcuts import redirect
 
 
 # Create your views here.
@@ -115,4 +118,25 @@ class CommentCreateView(CreateView):
     
         
         
+    
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST or None)
+        if form.is_valid():
+            cd = form.cleaned_data
+            subject = 'Contact Info'
+            from_email = settings.EMAIL_HOST_USER
+            to_email = cd['email']
+            message = cd['message']
+            send_mail(subject,
+                      message,
+                      from_email,
+                      [to_email],
+                      fail_silently=False)          
+            
+            return redirect(reverse('home'))
+    else:
+        form = ContactForm()    
+    context = {'form': form}
+    return render(request, 'contact.html', context)
     
