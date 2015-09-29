@@ -124,14 +124,14 @@ def contact(request):
         form = ContactForm(request.POST or None)
         if form.is_valid():
             cd = form.cleaned_data
-            subject = 'Contact Info'
+            subject = 'Contact Info From %s' % cd['name']
             from_email = settings.EMAIL_HOST_USER
             to_email = cd['email']
             message = cd['message']
             send_mail(subject,
                       message,
                       from_email,
-                      [to_email],
+                      [to_email,],
                       fail_silently=False)          
             
             return redirect(reverse('home'))
