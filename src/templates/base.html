@@ -9,24 +9,32 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    <!--<link rel="icon" href="http://getbootstrap.com/favicon.ico">-->
 
     <title>{% block title %}PyCon Survival Guide{% endblock title %}</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link href="{% static 'css/main.css' %}" rel="stylesheet" type='text/css' />
+    <link href="{% static 'css/comments.css' %}" rel="stylesheet" type="text/css"  />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{% static 'js/ajax.js' %}"></script>
+    
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>-->
+    <!--<script type='text/javascript' src="{% static 'js/ui.js' %}"></script>-->
+
 
 
     
     <style>
-        {% block style %}
-                body {
-                    padding-bottom: 20px;
-                    padding-top: 70px;
-                }
-                .messages {
-                    list-style: none;
-                }
-        {% endblock %}        
+        
+        body {
+            padding-bottom: 20px;
+            padding-top: 70px;
+        }
+        .messages {
+            list-style: none;
+        }
+                
     </style>
 
     
@@ -63,8 +71,10 @@
     <div class="container">
 
       <div class="blog-header">
-        {% block h1 %}<h1 class="blog-title">The Django Blog</h1>
-        <p class="lead blog-description">The un-official Django Survival Guide.</p>{% endblock h1 %}
+    {% block h1 %}
+        <h1 class="blog-title">The Django Blog</h1>
+        <p class="lead blog-description">The un-official Django Survival Guide.</p>
+    {% endblock h1 %}
       </div>
 
       <div class="row">
@@ -72,7 +82,8 @@
         <div class="col-sm-8 blog-main">
 
           <div class="blog-post">
-            {% block content %}{% endblock content %}           
+          
+{% block content %}{% endblock content %}           
           
           </div><!-- /.blog-post -->
 
@@ -104,7 +115,16 @@
           </div>
           <div class="sidebar-module">
             <h4>Elsewhere</h4>
+            <h5>Search For Talks Here:</h5>
+            
+                {% csrf_token %}
+                <input type="text" id="search" name="search" />
+
+                <ul id="search-results">
+
+                </ul> 
             <ol class="list-unstyled">
+            <br>
               <li><a href="https://github.com/chriskavanagh">GitHub</a></li>
               <li><a href="https://twitter.com/?lang=en">Twitter</a></li>
               <li><a href="https://www.facebook.com/">Facebook</a></li>
@@ -121,10 +141,10 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <!--<script src="../../dist/js/bootstrap.min.js"></script> -->
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
     {% block js %}{% endblock js %}
   </body>
 </html>

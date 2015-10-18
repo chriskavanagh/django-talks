@@ -1,22 +1,31 @@
 from __future__ import absolute_import
 from django.conf import settings
-from django.shortcuts import render
-from .forms import CommentForm
+from django.shortcuts import render, redirect
+from .forms import CommentForm, ContactForm
 from .models import TalkList, Comment
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic.dates import ArchiveIndexView
-from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView, TemplateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
-from .forms import ContactForm
 from django.core.mail import send_mail
-from django.shortcuts import redirect
+#from django.shortcuts import redirect
+#from .forms import ContactForm
 
 
 # Create your views here.
+
+class JqueryView(TemplateView):
+    template_name = 'jquery.html'
+    
+    
+class AngularView(TemplateView):
+    template_name = 'angular.html'
+
+
 class TalkListView(ListView):
     '''view that displays all lists'''
     model = TalkList
@@ -115,28 +124,54 @@ class CommentCreateView(CreateView):
         self.instance.talk = get_object_or_404(TalkList, pk=self.kwargs['pk'])    # or pk=self.kwargs.get('pk', None)
         self.instance.save()                                                      # redundant to save because (see below)...http://stackoverflow.com/questions/10382838/how-to-set-foreignkey-in-createview
         return super(CommentCreateView, self).form_valid(form)                    # this saves the form (again) along with instance.save()
-    
-        
         
     
+        
 def contact(request):
     if request.method == 'POST':
-        form = ContactForm(request.POST or None)
+        form = ContactForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             subject = 'Contact Info From %s' % cd['name']
             from_email = settings.EMAIL_HOST_USER
             to_email = cd['email']
             message = cd['message']
-            send_mail(subject,
-                      message,
-                      from_email,
-                      [to_email,],
-                      fail_silently=False)          
-            
+            send_mail(subject, message, from_email, [to_email], fail_silently=False)                                  
             return redirect(reverse('home'))
     else:
-        form = ContactForm()    
+        form = ContactForm()        
     context = {'form': form}
     return render(request, 'contact.html', context)
+    
+    
+def search_titles(request):
+    if request.method == 'POST':
+        search_text = request.POST['search_text']
+    else:
+        search_text = ''
+    talks = TalkList.objects.filter(title__contains=search_text)
+    context = {'talks': talks}
+    return render(request, 'ajax_search.html', context)
+        
+    
+    
+    
+# rewritten using request.POST or None. puts request.POST data in or renders empty form.    
+# def contact(request):
+    # form = ContactForm(request.POST or None)
+    # if form.is_valid():
+        # cd = form.cleaned_data
+        # subject = 'Contact Info From %s' % cd['name']
+        # from_email = settings.EMAIL_HOST_USER
+        # to_email = cd['email']
+        # message = cd['message']
+        # send_mail(subject, message, from_email, [to_email], fail_silently=False)                                  
+        # return redirect(reverse('home'))        
+    # context = {'form': form}
+    # return render(request, 'contact.html', context)
+
+    
+    
+    
+
     

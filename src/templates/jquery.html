@@ -1,0 +1,113 @@
+{% load staticfiles %}
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>jQuery UI Dialog - Default functionality</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+        <!-- jQuery UI Themes Link -->
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        
+        <link rel="stylesheet" href="/resources/demos/style.css" /> 
+
+        <style> 
+              body {
+                  padding-bottom: 20px;
+                  padding-top: 20px;
+              }              
+        </style>     
+    </head>
+
+<!-- Page Header -->
+  <div class='container'>
+    <div class="navbar-header">
+        <h1>Django & jQuery! 
+          <small>Welcome To The jQuery (w Django) Tutorial</small>
+        </h1>
+      </div>
+    </div>
+  </div>
+
+
+<!-- block content -->
+
+{% block content %}
+
+    <body>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        
+
+        <div class='container'>
+          <div class="jumbotron">
+          <h2>Welcome To TheNewBoston</h2>
+
+            <div class='row'>
+                <div class='col-md-4' style='background-color: #FF9999'>
+                    <p>This is Column 1 of Bootstrap Grid System</p>
+                    <p>This is Column 1 of Bootstrap Grid System</p>
+                    <p>This is Column 1 of Bootstrap Grid System</p>
+                    <p>This is Column 1 of Bootstrap Grid System</p>
+                </div>
+
+                <div class='col-md-4' style='background-color: #99CCFF'>
+                    <p>This is Column 2 of Bootstrap Grid System</p>
+                    <p>This is Column 1 of Bootstrap Grid System</p>
+                    <p>This is Column 1 of Bootstrap Grid System</p>
+                    <p>This is Column 1 of Bootstrap Grid System</p>
+                </div>
+
+                <div class='col-md-4' style='background-color: #00CC99'>
+                    <p>This is Column 3 of Bootstrap Grid System</p>
+                    <p>This is Column 1 of Bootstrap Grid System</p>
+                    <p>This is Column 1 of Bootstrap Grid System</p>
+                    <p>This is Column 1 of Bootstrap Grid System</p>
+                </div>
+             </div>
+          </div>
+        </div>
+      <br>
+    <br>
+
+
+        <div class='col-sm-6 col-sm-offset-3'>
+            <input id='save' class='btn btn-default' type='submit' value='Save'/>
+            <div id="dialog" title="Contact Info">
+              <p>Your Contact Information Was Submitted. Check Your Inbox For An Email From Us.</p>
+            </div>
+        </div>
+    </body>
+
+{% endblock content %}
+
+<!-- endblock content -->
+
+
+<!-- javascript content -->
+
+{% block js %}
+
+  <!-- <script type='text/javascript' src="{% static 'js/ui.js' %}"></script> -->
+
+<script>
+     $(function() {
+       $('#save').click(function() {
+           alert("It Worked!!!")
+       });
+     });
+</script>
+
+{% endblock js %}
+
+<!-- endblock javascript -->
+
+</html>

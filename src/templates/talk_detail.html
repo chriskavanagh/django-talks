@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
 
 {% block title %}{{ object.author }} | Lists{% endblock title %}
 
+<style type="text/css">
+div {
+        font: 32px Arial;
+    }
+</style>
+
 {% block headline %}
-<h1>{{ object.author }}</h1>
-<h2>Your Lists</h2>
+	<h1>{{ object.author }}</h1>
+	<h2>Your Lists</h2>
 {% endblock headline %}
+
+
 
 {% block content %}
 <div class="row">
@@ -18,18 +28,26 @@
 
 
 <!-- Comments -->
-</br>
-</br>
+		</br>
+	</br>
 </br>
 <div class="row">
 	<div class="col-sm-6">
 		<h4><i>All Comments. . .</i></h4>
 		<p><a href="{% url 'comment' object.pk %}" class="btn btn-default navbar-btn">Leave Comment</a></p></br>
 			{% for c in object.comments.all %}
-				<div class="comment">					
+				<div class="comment">
+					<div class="bubble-list">
+						<div class="bubble clearfix">
+						<div class="bubble-content">
+							<div class="point"></div>					
 					<div class="body"><strong><a href="{{ c.get_absolute_url }}">{{ c.title }}</strong>:</a></div>
 					<div class="time">{{ c.timestamp }}</div>
 					<div class="body"><p>{{ c.text|linebreaks }}</p></div>
+						</div>
+						</div>
+						</div>
+
 					</br>
 				</div>				
 			{% endfor %}

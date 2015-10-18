@@ -1,26 +1,62 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% load crispy_forms_tags %}
 
+	
 {% block title %}Contact Us{% endblock %}
 
-{% block h1 %}<br><h1>Contact Us For More Information</h1>
-<br>
-<hr>
+
+{% block h1 %}
+
+	<br><h1>Contact Us For More Information</h1>
+	<br>
+	<hr>
+
 {% endblock h1 %}
 
+
+<!-- content block -->
 {% block content %}
-	<div class='row'>
-		<div class='col-sm-6 col-sm-offset-3'>
+
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<script type='text/javascript' src="{% static 'js/ui.js' %}"></script>
+	
+		<div class='row'>
+			<div class='col-sm-6 col-sm-offset-3'>
+			 
 
 		    <form action='' method="POST">
 		        {% csrf_token %}
 		        {{ form|crispy }}
-		        <input class='btn btn-default' type='submit' value='Submit' />
+		        <input class='btn btn-default' type='submit' id='submit_button' value='Submit' />
 		    </form>
-	<br>
-	<hr>		
-	<p>Forgot Your Password? <a href="{% url 'password_reset' %}">Reset Password</a></p>
 
-    	</div>
-    </div>
-{% endblock %}
+		   <!-- <input id='save' type='button' value='Save'/> -->
+		    <div id='dialog' title='Basic Dialog'><p>Your Contact</p></div>
+
+			<br>
+			<hr>		
+			<p>Forgot Your Password? <a href="{% url 'password_reset' %}">Reset Password</a></p>
+
+		    	</div>
+		    </div>
+
+{% endblock content %}
+<!-- end content block -->
+
+
+<!-- javascript block -->
+{% block js %}
+
+<!--		<script>
+		  $(function() {
+		    $('#submit_button').click(function() {
+		        $('#dialog' ).dialog();
+		    });
+		  });
+		</script> -->
+
+{% endblock js %}
+<!-- end javascript block -->

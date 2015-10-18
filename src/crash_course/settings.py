@@ -49,6 +49,8 @@ INSTALLED_APPS = (
     'crispy_forms',
     'communication',
     'password_reset',
+    'rest_framework',
+    'djangular',
     #'comments',
     #'django_twilio',
 )
@@ -131,6 +133,15 @@ LOGIN_URL = 'login'    # reverse_lazy('login')
 
 #django-crispy-forms:
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+# djagno-rest settings
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 
 # Twilio (communication app)

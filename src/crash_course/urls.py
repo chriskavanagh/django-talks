@@ -24,6 +24,7 @@ from .views import HomePageView, SignUpView, LoginView, LogOutView, user_profile
 urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^password_reset/', include('password_reset.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^talks/', include('talks.urls')),

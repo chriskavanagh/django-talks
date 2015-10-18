@@ -1,0 +1,9 @@
+{% if talks.count > 0 %}
+
+{% for talk in talks %}
+	<li><a href="/talks/{{ talk.id }}/">{{ talk.title }}</a></li>
+{% endfor %}
+
+<li>None To Show</li>
+
+{% endif %}
